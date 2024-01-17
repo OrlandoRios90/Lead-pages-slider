@@ -1,0 +1,44 @@
+
+.slider-container {
+    position: relative;
+    width: 100%;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+}
+
+.arrow-right {
+    position: absolute;
+    top: 50%;
+    left: 90%;
+}
+
+.arrow-left, .arrow-right {
+    font-size: 40px;
+}
+
+.arrow-left:hover, .arrow-right:hover {
+cursor: pointer;
+}
+
+.arrow-left {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+}
+
+.video-player-subtext {
+    display: none;
+}
+
+.expo-img {
+    display: none;
+    width: 100%;
+}
+
+.expo-img.active-pic {
+    display: block;
+}
+

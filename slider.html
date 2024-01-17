@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="styles.css" />
+<script src="https://kit.fontawesome.com/202d2f6110.js" crossorigin="anonymous"></script>
+
+<div class="main-container">
+    <div class="slider-container">
+        <div class="video-player">
+            <div class="video-player-box">
+                <img src="https://lh3.googleusercontent.com/gZYTQecbOlNHtfj_qIKdPAWofWuFUSkPMs7Pc5x1E3OzNl79Yeu3gNWFp-UnKJO3uKaUs33B9PlVeYy4YY6nWz-m-iVVxD60ZmzG=s0"
+                    alt="wedding-expo" class="expo-img active-pic" onclick="advanceImageForward()">
+                <img src="https://lh3.googleusercontent.com/0FKwJIsJHwEZFUubk1SoVMVarJkOq-rQ4msD-h7Xr5cJ9ngiEG8b4kWDpoP6XZPGgELHPTemnE13yFw3fqUUiOadbqGo-FL1B7kE=s0"
+                    alt="wedding-expo" class="expo-img" onclick="advanceImageForward()">
+                <img src="https://lh3.googleusercontent.com/qPno5rWq-x6cK9Dniw881w38-YNYkySZ888gyaU4bEHBMlwPy_3aFuHp1MHWNMiMv967V7RgNG7wMzZj5lqMWVnzSIQNFz-qGw=s0"
+                    alt="wedding-expo" class="expo-img" onclick="advanceImageForward()">
+            </div>
+        </div>
+        <div class="arrow-right">
+            <i class="fa-solid fa-circle-arrow-right" style="color: #ffffff;" onclick="advanceImageForward()"></i>
+        </div>
+        <div class="arrow-left">
+            <i class="fa-solid fa-circle-arrow-left" style="color: #ffffff;" onclick="advanceImageBackward()"></i>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    let expoImages = document.getElementsByClassName("expo-img");
+    
+    //if the user has clicked an arrow then stop the auto sliding
+    let clickedArrow = false; 
+ //clicking the forward arrow
+ function advanceImageForward() {
+    clickedArrow = true;
+     let currDotIndex;
+     for (let i = 0; i < expoImages.length; i++) {
+         if (expoImages[i].className.includes("active-pic")) {
+             currDotIndex = i;
+             break;
+         }
+     }
+     expoImages[currDotIndex].classList.remove("active-pic");
+
+     if (currDotIndex === expoImages.length - 1) {
+         expoImages[0].classList.add("active-pic");
+     } else {
+         expoImages[currDotIndex + 1].classList.add("active-pic");
+     }
+ }
+
+ //clicking the back arrow
+ function advanceImageBackward() {
+    clickedArrow = true;
+    let currDotIndex;
+    for (let i = 0; i < expoImages.length; i++) {
+        if (expoImages[i].className.includes("active-pic")) {
+            currDotIndex = i;
+            break;
+        }
+    }
+    expoImages[currDotIndex].classList.remove("active-pic");
+
+    let expoImagesCount = expoImages.length - 1;
+
+    if (currDotIndex === 0) {
+        expoImages[expoImagesCount].classList.add("active-pic");
+    } else {
+        expoImages[currDotIndex - 1].classList.add("active-pic");
+    }
+}
+
+    let imageIndex= 0;
+
+    function changeImgTimer() {
+        if (!clickedArrow) {
+        expoImages[imageIndex].classList.remove("active-pic");
+        imageIndex > 1 ? imageIndex = 0 : imageIndex++;
+        expoImages[imageIndex].classList.add("active-pic");
+        }
+    }
+
+    window.onload = function () {
+    setInterval(changeImgTimer, 3000);
+};
+</script>
